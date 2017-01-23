@@ -2,7 +2,8 @@ package courtree;
 
 public class BinaryTree {
 
-	Node root;
+	Node root; //presedent
+	public static int Counter = 0;
 
 	public void addNode(int key, String name) {
 
@@ -37,7 +38,7 @@ public class BinaryTree {
 				// Check if the new node should go on
 				// the left side of the parent node
 
-				if (key < focusNode.key) {
+				if (key < focusNode.bDate) {
 
 					// Switch focus to the left child
 
@@ -135,11 +136,11 @@ public class BinaryTree {
 		// While we haven't found the Node
 		// keep looking
 
-		while (focusNode.key != key) {
+		while (focusNode.bDate != key) {
 
 			// If we should search to the left
 
-			if (key < focusNode.key) {
+			if (key < focusNode.bDate) {
 
 				// Shift the focus Node to the left child
 
@@ -164,57 +165,97 @@ public class BinaryTree {
 
 	}
 
+
+public boolean remove(int Bdate) { 
+
+    if (root == null) 
+
+          return false; 
+
+    else { 
+
+          if (root.getbDate() == Bdate) { 
+
+        	  Node auxRoot = new Node(0,"0"); 
+
+                auxRoot.setLeft(root); 
+
+                boolean result = root.remove(Bdate, auxRoot); 
+
+                root = auxRoot.getLeft(); 
+
+                return result; 
+
+          } else { 
+
+                return root.remove(Bdate, null); 
+
+          } 
+
+    } 
+
+}
+
+
 public static void main(String[] args) {
 
-		BinaryTree theTree = new BinaryTree();
+	BinaryTree theTree = new BinaryTree();
 
-		theTree.addNode(50, "Boss");
+	theTree.addNode(50, "Boss");
 
-		theTree.addNode(25, "Vice President");
+	theTree.addNode(25, "Vice President");
 
-		theTree.addNode(15, "Office Manager");
+	theTree.addNode(15, "Office Manager");
 
-		theTree.addNode(30, "Secretary");
+	theTree.addNode(30, "Secretary");
 
-		theTree.addNode(75, "Sales Manager");
+	theTree.addNode(75, "Sales Manager");
 
-		theTree.addNode(85, "Salesman 1");
+	theTree.addNode(85, "Salesman 1");
 
-		// Different ways to traverse binary trees
+	// Different ways to traverse binary trees
 
-		// theTree.inOrderTraverseTree(theTree.root);
+	 theTree.inOrderTraverseTree(theTree.root);
 
-		// theTree.preorderTraverseTree(theTree.root);
+	// theTree.preorderTraverseTree(theTree.root);
 
-		// theTree.postOrderTraverseTree(theTree.root);
+	// theTree.postOrderTraverseTree(theTree.root);
 
-		// Find the node with key 75
+	// Find the node with key 75
 
-		System.out.println("\nNode with the key 75");
+	System.out.println("\nNode with the key 75");
 
-		System.out.println(theTree.findNode(75));
+	System.out.println(theTree.findNode(75));
 
 }
 }
 
 class Node {
 
-	int key;
+
+
+	int id;
+	int bDate;
 	String name;
+	int seniority;
+	
 
 	Node leftChild;
 	Node rightChild;
+	Node Twin ;
 
 	Node(int key, String name) {
 
-		this.key = key;
+		this.bDate = key;
 		this.name = name;
+		id =BinaryTree.Counter++;
 
 	}
+	
 
 	public String toString() {
 
-		return name + " has the key " + key;
+		return name + " has the key " + bDate;
 
 		/*
 		 * return name + " has the key " + key + "\nLeft Child: " + leftChild +
@@ -222,5 +263,180 @@ class Node {
 		 */
 
 	}
+	
+    public int minValue() { 
+
+        if (leftChild == null) 
+
+              return bDate; 
+
+        else 
+
+              return leftChild.minValue(); 
+
+  }
+
+	
+	public boolean remove(int bDate, Node parent) { 
+
+        if (bDate < this.bDate) { 
+
+              if (leftChild != null) 
+
+                    return leftChild.remove(bDate, this); 
+
+              else 
+
+                    return false; 
+
+        } else if (bDate > this.bDate) { 
+
+              if (rightChild != null) 
+
+                    return rightChild.remove(bDate, this); 
+
+              else 
+
+                    return false; 
+
+        } else { 
+
+              if (leftChild != null && rightChild != null) { 
+
+                    this.bDate = rightChild.minValue(); 
+
+                    rightChild.remove(this.bDate, this); 
+
+              } else if (parent.leftChild == this) { 
+
+                    parent.leftChild = (leftChild != null) ? leftChild : rightChild; 
+
+              } else if (parent.rightChild == this) { 
+
+                    parent.rightChild = (leftChild != null) ? leftChild : rightChild; 
+
+              } 
+
+              return true; 
+
+        } 
+
+  }
+
+
+
+	
+	
+	/**
+	 * @return the id
+	 */
+	public int getId() {
+		return id;
+	}
+
+
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(int id) {
+		this.id = id;
+	}
+
+
+	/**
+	 * @return the bDate
+	 */
+	public int getbDate() {
+		return bDate;
+	}
+
+
+	/**
+	 * @param bDate the bDate to set
+	 */
+	public void setbDate(int bDate) {
+		this.bDate = bDate;
+	}
+
+
+	/**
+	 * @return the name
+	 */
+	public String getName() {
+		return name;
+	}
+
+
+	/**
+	 * @param name the name to set
+	 */
+	public void setName(String name) {
+		this.name = name;
+	}
+
+
+	/**
+	 * @return the seniority
+	 */
+	public int getSeniority() {
+		return seniority;
+	}
+
+
+	/**
+	 * @param seniority the seniority to set
+	 */
+	public void setSeniority(int seniority) {
+		this.seniority = seniority;
+	}
+
+
+	/**
+	 * @return the leftChild
+	 */
+	public Node getLeft() {
+		return leftChild;
+	}
+
+
+	/**
+	 * @param leftChild the leftChild to set
+	 */
+	public void setLeft(Node leftChild) {
+		this.leftChild = leftChild;
+	}
+
+
+	/**
+	 * @return the rightChild
+	 */
+	public Node getRight() {
+		return rightChild;
+	}
+
+
+	/**
+	 * @param rightChild the rightChild to set
+	 */
+	public void setRigh(Node rightChild) {
+		this.rightChild = rightChild;
+	}
+
+
+	/**
+	 * @return the twin
+	 */
+	public Node getTwin() {
+		return Twin;
+	}
+
+
+	/**
+	 * @param twin the twin to set
+	 */
+	public void setTwin(Node twin) {
+		Twin = twin;
+	}
+
 
 }

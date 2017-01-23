@@ -13,7 +13,8 @@ public class Run {
 
 	public static void addNodeToTrees(BinaryTree ageTree,BinaryTree seniorityTree,Node node)
 	{
-		Node ageNode =new Node(node);
+		//Node ageNode =new Node(node);
+		Node ageNode =node;
 		Node seniorityNode =new Node(node);
 		ageNode.setTwin(seniorityNode);
 		seniorityNode.setTwin(ageNode);
@@ -29,14 +30,14 @@ public class Run {
 		addNodeToTrees(ageTree,seniorityTree,new Node(199502, "snir",200103));
 		addNodeToTrees(ageTree,seniorityTree,new Node(199602, "no-far",200104));
 		addNodeToTrees(ageTree,seniorityTree,new Node(199601, "bar",200102));
-		addNodeToTrees(ageTree,seniorityTree,new Node(199601, "bar",200102));
+
 
 		
 		// Different ways to traverse binary trees
 		System.out.println("by age:");
 		 ageTree.inOrderTraverseTree(ageTree.getRoot());
 		 
-		System.out.println("by seniority:");
+		System.out.println("\nby seniority:");
 		seniorityTree.inOrderTraverseTree(seniorityTree.getRoot());
 
 		// theTree.preorderTraverseTree(theTree.root);

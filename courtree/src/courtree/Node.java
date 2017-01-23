@@ -18,6 +18,18 @@ public class Node {
 	Node Twin ;
 	comperator cmp;
 
+	public void copy(Node from){
+		this.id= from.id;
+		this.bDate=from.bDate;
+		this.name=from.name;
+		this.seniority = from.seniority;
+		//this.leftChild = from.leftChild;
+		//this.rightChild=from.rightChild;
+		this.parent=from.parent;
+		this.Twin=from.Twin;
+		this.cmp=from.cmp;
+				
+	}
 	/**
 	 * @param cmp the cmp to set
 	 */
@@ -87,28 +99,33 @@ public class Node {
 
 	
 	public boolean remove() { 
-/*
-        if (cmp.compareTokey(this, key)>0) { // key < this.bDate
 
-              if (leftChild != null) 
-
-                    return leftChild.remove(key, this); 
-
-              else 
-
-                    return false; 
-
-        } else if (cmp.compareTokey(this, key)<0) { // key > this.bDate
-
-              if (rightChild != null) 
-
-                    return rightChild.remove(key, this); 
-
-              else 
-
-                    return false; 
-
-        } else { */
+		if (parent ==null )//shit im the root
+		{
+			Node replacement;
+			if (leftChild != null && rightChild != null) { 
+				replacement = this.leftChild;
+				while (replacement.rightChild != null){
+					replacement = replacement.rightChild;
+				}
+			}
+			else if (leftChild != null){
+				replacement = this.leftChild;
+			}
+			else if(rightChild != null){
+				replacement = this.rightChild;
+			}
+			else {
+				
+				return false;
+			}
+			this.copy(replacement);
+				
+				
+				return replacement.remove();
+					
+			
+		}
         	
               if (leftChild != null && rightChild != null) { 
 

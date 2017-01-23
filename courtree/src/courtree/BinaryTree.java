@@ -350,30 +350,13 @@ public boolean remove(int Bdate) {
 
     else { 
 
-          if (getRoot().getbDate() == Bdate) { 
-
-        	  Node auxRoot = new Node(0,"0"); 
-
-                auxRoot.setLeft(getRoot()); 
-                getRoot().setParent(auxRoot);
-                boolean result = getRoot().remove(); 
-
-                setRoot(auxRoot.getLeft()); 
-
-                return result; 
-
-          } else { 
         	  Node remover=this.findNode(Bdate);
         	  if (remover.getTwin()!= null){
         		  remover.getTwin().remove();
         		  remover.setTwin(null);
         	  }
         		  
-        	  return remover.remove();
-               // return getRoot().remove(Bdate, null); 
-        	  //return true;
-
-          } 
+        	  return remover.remove(); 
 
     } 
 

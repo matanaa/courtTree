@@ -28,8 +28,8 @@ public class Run {
 		
 		addNodeToTrees(ageTree,seniorityTree,new Node(199102, "matan",199903));
 		addNodeToTrees(ageTree,seniorityTree,new Node(199002, "moshmosh",200003));
-		addNodeToTrees(ageTree,seniorityTree,new Node(199502, "snir",200103));
-		addNodeToTrees(ageTree,seniorityTree,new Node(199602, "no-far",200104));
+		addNodeToTrees(ageTree,seniorityTree,new Node(199502, "snir",200104));
+		addNodeToTrees(ageTree,seniorityTree,new Node(199602, "no-far",200103));
 		addNodeToTrees(ageTree,seniorityTree,new Node(199601, "bar",200102));
 
 
@@ -37,7 +37,7 @@ public class Run {
 		// Different ways to traverse binary trees
 		System.out.println("by age:");
 		 ageTree.inOrderTraverseTree(ageTree.getRoot());
-		 ageTree.remove(199002);
+		 ageTree.remove(199601);
 		 
 		 System.out.println("\nremove:");
 		 ageTree.inOrderTraverseTree(ageTree.getRoot());

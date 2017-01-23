@@ -5,7 +5,7 @@ public class BinaryTree {
 
 	private Node root; //presedent
 	public static int Counter = 0;
-
+	public comperator cmp; 
 	public void addNode(int key, String name) {
 
 		// Create a new Node and initialize it
@@ -80,11 +80,22 @@ public class BinaryTree {
 	
 	
 	
-	public void addNode(int key, String name,int seniority) {
+	public BinaryTree(comperator cmp) {
+		super();
+		this.cmp = cmp;
+	}
+	public BinaryTree() {
+		super();
+		this.cmp = new ageComper();
+		//this.cmp = new seniorityComper();
+	}
+
+
+	public Node addNode(int bDate, String name,int seniority) {
 
 		// Create a new Node and initialize it
 
-		Node newNode = new Node(key, name,seniority);
+		Node newNode = new Node(bDate, name,seniority);
 
 		// If there is no root this becomes root
 
@@ -113,7 +124,7 @@ public class BinaryTree {
 				// Check if the new node should go on
 				// the left side of the parent node
 
-				if (key < focusNode.bDate) {
+				if (cmp.compareTo(newNode, focusNode)) {
 
 					// Switch focus to the left child
 
@@ -126,7 +137,8 @@ public class BinaryTree {
 						// then place the new node on the left of it
 
 						parent.leftChild = newNode;
-						return; // All Done
+						//return; // All Done
+						break;
 
 					}
 
@@ -141,7 +153,8 @@ public class BinaryTree {
 						// then place the new node on the right of it
 
 						parent.rightChild = newNode;
-						return; // All Done
+						//return; // All Done
+						break;
 
 					}
 
@@ -149,6 +162,82 @@ public class BinaryTree {
 
 			}
 		}
+		
+		return newNode;
+
+	}
+	
+	
+	public Node addNode(Node newNode) {
+
+
+		// If there is no root this becomes root
+
+		if (getRoot() == null) {
+
+			setRoot(newNode);
+
+		} else {
+
+			// Set root as the Node we will start
+			// with as we traverse the tree
+
+			Node focusNode = getRoot();
+
+			// Future parent for our new Node
+
+			Node parent;
+
+			while (true) {
+
+				// root is the top parent so we start
+				// there
+
+				parent = focusNode;
+
+				// Check if the new node should go on
+				// the left side of the parent node
+
+				if (cmp.compareTo(newNode, focusNode)) {
+
+					// Switch focus to the left child
+
+					focusNode = focusNode.leftChild;
+
+					// If the left child has no children
+
+					if (focusNode == null) {
+
+						// then place the new node on the left of it
+
+						parent.leftChild = newNode;
+						//return; // All Done
+						break;
+
+					}
+
+				} else { // If we get here put the node on the right
+
+					focusNode = focusNode.rightChild;
+
+					// If the right child has no children
+
+					if (focusNode == null) {
+
+						// then place the new node on the right of it
+
+						parent.rightChild = newNode;
+						//return; // All Done
+						break;
+
+					}
+
+				}
+
+			}
+		}
+		
+		return newNode;
 
 	}
 

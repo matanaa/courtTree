@@ -23,7 +23,7 @@ public class Node {
 		id =BinaryTree.Counter++;
 
 	}
-	Node(int key, String name ,int seniority) {
+	public Node(int key, String name ,int seniority) {
 
 		this.bDate = key;
 		this.name = name;
@@ -32,10 +32,20 @@ public class Node {
 
 	}
 	
+	public Node(Node cp) {
+
+		this.bDate = cp.bDate;
+		this.name = cp.name;
+		this.seniority=cp.seniority;
+		this.Twin = cp.Twin;
+		id =BinaryTree.Counter++;
+
+	}
+	
 
 	public String toString() {
 
-		return name + " born at  " + bDate+ " seniority " + seniority;
+		return "id:" + id +" name: "+name + " born at  " + bDate+ " seniority " + seniority;
 
 		/*
 		 * return name + " has the key " + key + "\nLeft Child: " + leftChild +

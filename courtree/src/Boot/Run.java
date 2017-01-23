@@ -16,6 +16,7 @@ public class Run {
 		//Node ageNode =new Node(node);
 		Node ageNode =node;
 		Node seniorityNode =new Node(node);
+		seniorityNode.setCmp(new seniorityComper());
 		ageNode.setTwin(seniorityNode);
 		seniorityNode.setTwin(ageNode);
 		ageTree.addNode(ageNode);
@@ -36,7 +37,10 @@ public class Run {
 		// Different ways to traverse binary trees
 		System.out.println("by age:");
 		 ageTree.inOrderTraverseTree(ageTree.getRoot());
+		 ageTree.remove(199002);
 		 
+		 System.out.println("\nremove:");
+		 ageTree.inOrderTraverseTree(ageTree.getRoot());
 		System.out.println("\nby seniority:");
 		seniorityTree.inOrderTraverseTree(seniorityTree.getRoot());
 

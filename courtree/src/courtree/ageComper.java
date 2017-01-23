@@ -10,4 +10,27 @@ public class ageComper implements comperator {
 		return n1.getbDate() <n2.getbDate() ;
 	}
 
+	public int compareTokey(Node n1, int key) {
+		return n1.getbDate() -key ;
+	}
+	
+	 public int minValue(Node n1) { 
+			
+	        if (n1.leftChild == null) 
+	        	 return n1.getbDate();
+	        else 
+
+	              return this.minValue(n1.getLeft());
+	 }
+	 
+	 public void setValue(Node n1,int value) { 
+	 
+	 n1.setbDate(value);
+	 }
+	 
+	 public int getKey(Node n1){
+		 return n1.getbDate();
+	 }
+
+
 }

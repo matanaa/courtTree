@@ -100,7 +100,7 @@ public class BinaryTree {
 		// If there is no root this becomes root
 
 		if (getRoot() == null) {
-
+			newNode.setParent(null);
 			setRoot(newNode);
 
 		} else {
@@ -135,8 +135,9 @@ public class BinaryTree {
 					if (focusNode == null) {
 
 						// then place the new node on the left of it
-
+						newNode.setParent(parent);
 						parent.leftChild = newNode;
+
 						//return; // All Done
 						break;
 
@@ -151,8 +152,9 @@ public class BinaryTree {
 					if (focusNode == null) {
 
 						// then place the new node on the right of it
-
+						newNode.setParent(parent);
 						parent.rightChild = newNode;
+
 						//return; // All Done
 						break;
 
@@ -174,7 +176,7 @@ public class BinaryTree {
 		// If there is no root this becomes root
 
 		if (getRoot() == null) {
-
+			newNode.setParent(null);
 			setRoot(newNode);
 
 		} else {
@@ -211,6 +213,7 @@ public class BinaryTree {
 						// then place the new node on the left of it
 
 						parent.leftChild = newNode;
+						newNode.setParent(parent);
 						//return; // All Done
 						break;
 
@@ -227,6 +230,7 @@ public class BinaryTree {
 						// then place the new node on the right of it
 
 						parent.rightChild = newNode;
+						newNode.setParent(parent);
 						//return; // All Done
 						break;
 
@@ -351,16 +355,23 @@ public boolean remove(int Bdate) {
         	  Node auxRoot = new Node(0,"0"); 
 
                 auxRoot.setLeft(getRoot()); 
-
-                boolean result = getRoot().remove(Bdate, auxRoot); 
+                getRoot().setParent(auxRoot);
+                boolean result = getRoot().remove(); 
 
                 setRoot(auxRoot.getLeft()); 
 
                 return result; 
 
           } else { 
-
-                return getRoot().remove(Bdate, null); 
+        	  Node remover=this.findNode(Bdate);
+        	  if (remover.getTwin()!= null){
+        		  remover.getTwin().remove();
+        		  remover.setTwin(null);
+        	  }
+        		  
+        	  return remover.remove();
+               // return getRoot().remove(Bdate, null); 
+        	  //return true;
 
           } 
 

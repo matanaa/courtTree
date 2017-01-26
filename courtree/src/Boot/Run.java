@@ -1,5 +1,6 @@
 package Boot;
 
+import court.court;
 import courtree.BinaryTree;
 import courtree.Node;
 import courtree.ageComper;
@@ -22,21 +23,40 @@ public class Run {
 		ageTree.addNode(ageNode);
 		seniorityTree.addNode(seniorityNode);
 	}
+	
 	public static void main(String[] args) {
+	court myCourt=new court();
+	myCourt.addNodeToTrees(new Node(199102, "matan"));
+	myCourt.addNodeToTrees(new Node(199002, "moshmosh"));
+	myCourt.addNodeToTrees(new Node(199502, "snir"));
+	myCourt.addNodeToTrees(new Node(199502, "no-far"));
+	myCourt.addNodeToTrees(new Node(199502, "bar"));
+	System.out.println("Seaech for bar node: "+  myCourt.searchByAge(199502));
+	System.out.println("Expected president:");
+	myCourt.printExpectedPresident();
+	
+	}
+	public static void mainOld(String[] args) {
 		BinaryTree ageTree = new BinaryTree(new ageComper());
 		BinaryTree seniorityTree = new BinaryTree(new seniorityComper());
 		
-		addNodeToTrees(ageTree,seniorityTree,new Node(199102, "matan",199903));
-		addNodeToTrees(ageTree,seniorityTree,new Node(199002, "moshmosh",200003));
-		addNodeToTrees(ageTree,seniorityTree,new Node(199502, "snir",200104));
-		addNodeToTrees(ageTree,seniorityTree,new Node(199602, "no-far",200103));
-		addNodeToTrees(ageTree,seniorityTree,new Node(199601, "bar",200102));
+		addNodeToTrees(ageTree,seniorityTree,new Node(199102, "matan"));
+		addNodeToTrees(ageTree,seniorityTree,new Node(199002, "moshmosh"));
+		addNodeToTrees(ageTree,seniorityTree,new Node(199502, "snir"));
+		addNodeToTrees(ageTree,seniorityTree,new Node(199602, "no-far"));
+		addNodeToTrees(ageTree,seniorityTree,new Node(199601, "bar"));
 
 
 		
 		// Different ways to traverse binary trees
 		System.out.println("by age:");
 		 ageTree.inOrderTraverseTree(ageTree.getRoot());
+		 
+			System.out.println("\nby seniority:");
+			seniorityTree.inOrderTraverseTree(seniorityTree.getRoot());
+		 
+		 
+		 
 		 ageTree.remove(199601);
 		 
 		 System.out.println("\nremove:");

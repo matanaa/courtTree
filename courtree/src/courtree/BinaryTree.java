@@ -5,7 +5,27 @@ public class BinaryTree {
 
 	private Node root; //presedent
 	public static int Counter = 0;
+	public static int changekey = 0;
 	public comperator cmp; 
+	Node president;
+	/**
+	 * @return the president
+	 */
+	public Node getPresident() {
+		return president;
+	}
+
+
+
+	/**
+	 * @param president the president to set
+	 */
+	public void setPresident(Node president) {
+		this.president = president;
+	}
+
+
+
 	public void addNode(int key, String name) {
 
 		// Create a new Node and initialize it
@@ -91,84 +111,6 @@ public class BinaryTree {
 	}
 
 
-	public Node addNode(int bDate, String name,int seniority) {
-
-		// Create a new Node and initialize it
-
-		Node newNode = new Node(bDate, name,seniority);
-
-		// If there is no root this becomes root
-
-		if (getRoot() == null) {
-			newNode.setParent(null);
-			setRoot(newNode);
-
-		} else {
-
-			// Set root as the Node we will start
-			// with as we traverse the tree
-
-			Node focusNode = getRoot();
-
-			// Future parent for our new Node
-
-			Node parent;
-
-			while (true) {
-
-				// root is the top parent so we start
-				// there
-
-				parent = focusNode;
-
-				// Check if the new node should go on
-				// the left side of the parent node
-
-				if (cmp.compareTo(newNode, focusNode)) {
-
-					// Switch focus to the left child
-
-					focusNode = focusNode.leftChild;
-
-					// If the left child has no children
-
-					if (focusNode == null) {
-
-						// then place the new node on the left of it
-						newNode.setParent(parent);
-						parent.leftChild = newNode;
-
-						//return; // All Done
-						break;
-
-					}
-
-				} else { // If we get here put the node on the right
-
-					focusNode = focusNode.rightChild;
-
-					// If the right child has no children
-
-					if (focusNode == null) {
-
-						// then place the new node on the right of it
-						newNode.setParent(parent);
-						parent.rightChild = newNode;
-
-						//return; // All Done
-						break;
-
-					}
-
-				}
-
-			}
-		}
-		
-		return newNode;
-
-	}
-	
 	
 	public Node addNode(Node newNode) {
 
@@ -268,6 +210,27 @@ public class BinaryTree {
 		}
 
 	}
+	
+	public void ExpectedPresident(Node focusNode) {
+
+		if (focusNode != null) {
+
+			// Traverse the left node
+
+			inOrderTraverseTree(focusNode.leftChild);
+
+			// Visit the currently focused on node
+			if (president.getbDate() <=focusNode.getbDate()){
+			System.out.println(focusNode);
+			setPresident(focusNode);
+			}
+			// Traverse the right node
+
+			inOrderTraverseTree(focusNode.rightChild);
+
+		}
+
+	}
 
 	public void preorderTraverseTree(Node focusNode) {
 
@@ -358,40 +321,8 @@ public boolean remove(int Bdate) {
         		  
         	  return remover.remove(); 
 
-    } 
+    	} 
 
-}
+	}
 
-
-public static void main1(String[] args) {
-
-	BinaryTree theTree = new BinaryTree();
-
-	theTree.addNode(50, "Boss");
-
-	theTree.addNode(25, "Vice President");
-
-	theTree.addNode(15, "Office Manager");
-
-	theTree.addNode(30, "Secretary");
-
-	theTree.addNode(75, "Sales Manager");
-
-	theTree.addNode(85, "Salesman 1");
-
-	// Different ways to traverse binary trees
-
-	 theTree.inOrderTraverseTree(theTree.getRoot());
-
-	// theTree.preorderTraverseTree(theTree.root);
-
-	// theTree.postOrderTraverseTree(theTree.root);
-
-	// Find the node with key 75
-
-	System.out.println("\nNode with the key 75");
-
-	System.out.println(theTree.findNode(75));
-
-}
 }

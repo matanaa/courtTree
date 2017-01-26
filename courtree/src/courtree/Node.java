@@ -9,7 +9,7 @@ public class Node {
 	int id;
 	int bDate;
 	String name;
-	int seniority;
+	
 	
 
 	Node leftChild;
@@ -22,7 +22,6 @@ public class Node {
 		this.id= from.id;
 		this.bDate=from.bDate;
 		this.name=from.name;
-		this.seniority = from.seniority;
 		//this.leftChild = from.leftChild;
 		//this.rightChild=from.rightChild;
 		this.parent=from.parent;
@@ -36,47 +35,38 @@ public class Node {
 	public void setCmp(comperator cmp) {
 		this.cmp = cmp;
 	}
-	Node(int key, String name) {
+	public Node(int key, String name) {
 
 		this.bDate = key;
 		this.name = name;
-		id =BinaryTree.Counter++;
+		id =++BinaryTree.Counter;
+
+
 
 	}
-	public Node(int key, String name ,int seniority,comperator cmp) {
+	public Node(int key, String name ,comperator cmp) {
 
 		this.bDate = key;
 		this.name = name;
-		this.seniority=seniority;
 		id =BinaryTree.Counter++;
 		this.cmp =cmp;
 
 	}
-	public Node(int key, String name ,int seniority) {
 
-		this.bDate = key;
-		this.name = name;
-		this.seniority=seniority;
-		id =BinaryTree.Counter++;
-		this.cmp =new ageComper();
-
-	}
-	
 	public Node(Node cp) {
 
 		this.bDate = cp.bDate;
 		this.name = cp.name;
-		this.seniority=cp.seniority;
 		this.Twin = cp.Twin;
 		this.cmp =cp.cmp;
-		id =BinaryTree.Counter++;
+		id =BinaryTree.Counter;
 
 	}
 	
 
 	public String toString() {
 
-		return "id:" + id +" name: "+name + " born at  " + bDate+ " seniority " + seniority;
+		return "id:" + id +" name: "+name + " born at  " + bDate;
 
 		/*
 		 * return name + " has the key " + key + "\nLeft Child: " + leftChild +
@@ -201,20 +191,7 @@ public class Node {
 	}
 
 
-	/**
-	 * @return the seniority
-	 */
-	public int getSeniority() {
-		return seniority;
-	}
 
-
-	/**
-	 * @param seniority the seniority to set
-	 */
-	public void setSeniority(int seniority) {
-		this.seniority = seniority;
-	}
 
 
 	/**

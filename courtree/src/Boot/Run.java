@@ -29,9 +29,9 @@ public class Run {
 	myCourt.addNodeToTrees(new Node(199102, "matan"));
 	myCourt.addNodeToTrees(new Node(199002, "moshmosh"));
 	myCourt.addNodeToTrees(new Node(199502, "snir"));
-	myCourt.addNodeToTrees(new Node(199502, "no-far"));
-	myCourt.addNodeToTrees(new Node(199502, "bar"));
-	System.out.println("Seaech for bar node: "+  myCourt.searchByAge(199502));
+	myCourt.addNodeToTrees(new Node(199602, "no-far"));
+	myCourt.addNodeToTrees(new Node(199601, "bar"));
+	System.out.println("Seaech for bar node: "+  myCourt.searchByAge(199601));
 	System.out.println("Expected president:");
 	myCourt.printExpectedPresident();
 	

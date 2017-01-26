@@ -217,7 +217,7 @@ public class BinaryTree {
 
 			// Traverse the left node
 
-			inOrderTraverseTree(focusNode.leftChild);
+			ExpectedPresident(focusNode.leftChild);
 
 			// Visit the currently focused on node
 			if (president.getbDate() <=focusNode.getbDate()){
@@ -226,7 +226,7 @@ public class BinaryTree {
 			}
 			// Traverse the right node
 
-			inOrderTraverseTree(focusNode.rightChild);
+			ExpectedPresident(focusNode.rightChild);
 
 		}
 

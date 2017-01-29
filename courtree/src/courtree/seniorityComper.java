@@ -8,7 +8,7 @@ public class seniorityComper implements comperator  {
 
 	public boolean compareTo(Node n1,Node n2) {
 		// TODO Auto-generated method stub
-		return n1.getId()<n2.getId();
+		return n1.getId()>n2.getId();
 	}
 	
 	public int compareTokey(Node n1,int key) {

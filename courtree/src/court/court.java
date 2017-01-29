@@ -7,8 +7,8 @@ import courtree.seniorityComper;
 
 public class court {
 	BinaryTree ageTree;
-	BinaryTree seniorityTree ;
-	Node president;
+	public BinaryTree seniorityTree ;
+	public Node president;
 	
 	public court() {
 		 ageTree = new BinaryTree(new ageComper());
@@ -25,7 +25,7 @@ public class court {
 		ageTree.addNode(ageNode);
 		seniorityTree.addNode(seniorityNode);
 		if (president==null){
-			president=ageNode;
+			president=seniorityNode;
 		}
 		
 	}
@@ -35,6 +35,12 @@ public class court {
 	}
 	
 	public boolean removeByAge(int age){
+		Node s =searchByAge(age);
+		if (president==s.getTwin())
+		{
+			seniorityTree.setPresident(president);
+			setPresident(seniorityTree.nextPresident(president));
+		}
 		return ageTree.remove(age);
 	}
 	
@@ -43,6 +49,23 @@ public class court {
 		seniorityTree.ExpectedPresident(president);
 		
 	}
+
+	/**
+	 * @return the president
+	 */
+	public Node getPresident() {
+		return president;
+	}
+
+	/**
+	 * @param president the president to set
+	 */
+	public void setPresident(Node president) {
+		this.president = president;
+	}
+	
+	
+	
 	
 
 }

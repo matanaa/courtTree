@@ -195,19 +195,47 @@ public class BinaryTree {
 
 		if (focusNode != null) {
 
-			// Traverse the left node
-
-			inOrderTraverseTree(focusNode.leftChild);
-
-			// Visit the currently focused on node
-
-			System.out.println(focusNode);
 
 			// Traverse the right node
 
 			inOrderTraverseTree(focusNode.rightChild);
 
+
+			// Visit the currently focused on node
+
+			System.out.println(focusNode);
+
+			// Traverse the left node
+
+			inOrderTraverseTree(focusNode.leftChild);
+
 		}
+
+	}
+	
+	public Node nextPresident(Node focusNode) {
+
+		if (focusNode != null) {
+
+			// Traverse the right node
+			Node val;
+			val = nextPresident(focusNode.rightChild);
+			if (val !=null){
+				return val;
+			}
+
+			// Visit the currently focused on node
+			if (president.getbDate() <=focusNode.getbDate()){
+			return focusNode;
+			
+			}
+
+
+			// Traverse the left node
+
+			return nextPresident(focusNode.leftChild);
+		}
+		return null;
 
 	}
 	
@@ -215,19 +243,20 @@ public class BinaryTree {
 
 		if (focusNode != null) {
 
-			// Traverse the left node
+			// Traverse the right node
 
-			ExpectedPresident(focusNode.leftChild);
+			ExpectedPresident(focusNode.rightChild);
 
 			// Visit the currently focused on node
 			if (president.getbDate() <=focusNode.getbDate()){
 			System.out.println(focusNode);
 			setPresident(focusNode);
 			}
-			// Traverse the right node
 
-			ExpectedPresident(focusNode.rightChild);
 
+			// Traverse the left node
+
+			ExpectedPresident(focusNode.leftChild);
 		}
 
 	}

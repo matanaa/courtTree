@@ -16,7 +16,10 @@ public class court {
 		 president=null;
 	}
 	
-	public void addNodeToTrees(Node node){
+	public int addNodeToTrees(Node node){
+		if (searchByAge(node.getbDate())!=null){
+			return -1;
+		}
 		Node ageNode =node;
 		Node seniorityNode =new Node(node);
 		seniorityNode.setCmp(new seniorityComper());
@@ -27,10 +30,11 @@ public class court {
 		if (president==null){
 			president=seniorityNode;
 		}
-		
+		return node.getId();
 	}
 	
 	public Node searchByAge(int age){
+		
 		return ageTree.findNode(age);
 	}
 	

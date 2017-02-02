@@ -22,6 +22,8 @@ public class Run {
 	myCourt.addNodeToTrees(new Node(199502, "snir"));
 	myCourt.addNodeToTrees(new Node(199602, "no-far"));
 	myCourt.addNodeToTrees(new Node(199601, "bar"));
+	if (myCourt.addNodeToTrees(new Node(199002, "moshmosh1"))==-1)
+		System.out.println("Cant enter moshmosh1");
 	
 	System.out.println("Expected president:");
 	myCourt.printExpectedPresident();

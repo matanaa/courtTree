@@ -3,7 +3,7 @@ import courtree.*;
 
 public class BinaryTree {
 
-	private Node root; //presedent
+	private Node root; //President
 	public static int Counter = 0;
 	public static int changekey = 0;
 	public comperator cmp; 
@@ -190,28 +190,6 @@ public class BinaryTree {
 	// All nodes are visited in ascending order
 	// Recursion is used to go to one node and
 	// then go to its child nodes and so forth
-
-	public void inOrderTraverseTree(Node focusNode) {
-
-		if (focusNode != null) {
-
-
-			// Traverse the right node
-
-			inOrderTraverseTree(focusNode.rightChild);
-
-
-			// Visit the currently focused on node
-
-			System.out.println(focusNode);
-
-			// Traverse the left node
-
-			inOrderTraverseTree(focusNode.leftChild);
-
-		}
-
-	}
 	
 	public Node nextPresident(Node focusNode) {
 
@@ -261,31 +239,7 @@ public class BinaryTree {
 
 	}
 
-	public void preorderTraverseTree(Node focusNode) {
 
-		if (focusNode != null) {
-
-			System.out.println(focusNode);
-
-			preorderTraverseTree(focusNode.leftChild);
-			preorderTraverseTree(focusNode.rightChild);
-
-		}
-
-	}
-
-	public void postOrderTraverseTree(Node focusNode) {
-
-		if (focusNode != null) {
-
-			postOrderTraverseTree(focusNode.leftChild);
-			postOrderTraverseTree(focusNode.rightChild);
-
-			System.out.println(focusNode);
-
-		}
-
-	}
 
 	public Node getRoot() {
 		return root;
@@ -300,7 +254,8 @@ public class BinaryTree {
 		// Start at the top of the tree
 
 		Node focusNode = getRoot();
-
+		if (focusNode==null)
+			return focusNode;
 		// While we haven't found the Node
 		// keep looking
 
